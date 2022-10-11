@@ -2,6 +2,7 @@
   <div class="root">
     <div class="container">
       <h1 id="h1">Тестирование</h1>
+
       <div>
         <textarea id="textarea-value" class="body-param_text" v-model="confData">
 
@@ -32,8 +33,8 @@
 </template>
 
 <script>
-
 export default {
+
   name: 'MyMain',
   data() {
     return {
@@ -64,7 +65,7 @@ export default {
           })
           .then((data) => {
             console.log(data);
-            this.$swal('Something went wrong.')
+            this.swal('Something went wrong.')
           })
           .catch(error => alert(error))
 
@@ -102,8 +103,8 @@ export default {
 #h1 {
   font-family: "HP Simplified Hans";
   text-align: center;
-  color: aliceblue;
-  padding-bottom: 35px;
+  color: black;
+  margin-top: 0%;
   font-size: 30px;
 }
 
@@ -113,10 +114,9 @@ export default {
   font-size: 20px;
   padding: 6px 24px;
   margin-bottom: 25px;
-  font-family: "HP Simplified Hans";
+  margin-top: 5%;
+  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
-
-
 }
 
 #p2 {
@@ -125,10 +125,8 @@ export default {
   font-size: 20px;
   padding: 6px 24px;
   margin-bottom: 25px;
-  font-family: "HP Simplified Hans";
+  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
-
-
 }
 
 #p3 {
@@ -137,7 +135,7 @@ export default {
   font-size: 20px;
   padding: 6px 24px;
   margin-bottom: 25px;
-  font-family: "HP Simplified Hans";
+  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
 
 }
@@ -148,37 +146,19 @@ export default {
   font-size: 20px;
   padding: 6px 24px;
   margin-bottom: 15px;
-  font-family: "HP Simplified Hans";
+  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
 
 }
 
-
-output {
-  background-color: ghostwhite;
-  margin-left: 30px;
-  padding: 6px 24px;
-  border-radius: 6px;
-  border-color: red;
-  font-size: 20px;
-}
-
-input {
-  background-color: ghostwhite;
-  margin-left: 50px;
-  padding: 6px 24px;
-  border-radius: 6px;
-  border-color: red;
-  font-size: 20px;
+button {
+  margin-left: 15%;
 }
 
 .container {
   width: auto;
   height: auto;
-  border-radius: 30px;
-  padding: 30px;
   margin: 5%;
-  /*background: rgb(60, 90, 200);*/
 }
 
 .body-param_text {
@@ -186,7 +166,8 @@ input {
   height: 300px;
   border-radius: 6px;
   float: right;
-  margin-top: -30px;
+  margin-top: 5%;
+  margin-right: 5%;
   box-shadow: 5px 5px 5px lightgrey;
 }
 </style>

@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LogTemplate from '../views/LogTemplate.vue'
+import Empty from '../views/Empty.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,12 +14,14 @@ const router = createRouter({
     {
       path: '/logs',
       name: 'logs',
-      component: () => import('../views/Logs.vue')
+      component: LogTemplate
+      // component: () => import('../views/LogTemplate.vue')
     },
     {
       path: '/empty',
       name: 'empty',
-      component: () => import('../views/Empty.vue')
+      component: Empty
+      // component: () => import('../views/Empty.vue')
     },
   ]
 })
