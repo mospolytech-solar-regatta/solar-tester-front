@@ -17,7 +17,6 @@ import "@/assets/main.min.css"
 
 import { RouterView } from 'vue-router'
 import Sidebar from './components/Sidebar.vue'
-import Navigation from './components/Navigation.vue'
 
 const isSideMenuOpen = ref(false);
 </script>
