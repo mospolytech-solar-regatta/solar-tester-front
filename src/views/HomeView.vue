@@ -32,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'MyMain',
   data() {
@@ -53,7 +54,7 @@ export default {
             console.log(data);
             alert(data)
           })
-          .catch(error => this.alert(error))
+          .catch(error => alert(error))
     },
     async stop() {
 
@@ -63,9 +64,9 @@ export default {
           })
           .then((data) => {
             console.log(data);
-            alert(data)
+            this.$swal('Something went wrong.')
           })
-          .catch(error => this.alert(error))
+          .catch(error => alert(error))
 
     },
     async getConf() {
@@ -89,7 +90,7 @@ export default {
             body:
                 JSON.stringify(document.getElementById("textarea-value").value)
           }
-      ).then(alert("Successful sent"))
+      ).then(data => alert("Successful sent"))
           .catch(error => alert("Something happened wrong: " + error))
     }
   }
