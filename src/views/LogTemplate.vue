@@ -29,6 +29,9 @@ export default {
     add() {
       this.items.push(this.currentIndex);
       this.currentIndex++;
+    },
+    delete(key){
+      this.items.pop(this.items.map(key));
     }
   }
 }
@@ -49,5 +52,9 @@ export default {
 
 #add:hover {
   background-color: #72ff00;
+}
+
+div{
+  font-family: Tahoma;
 }
 </style>

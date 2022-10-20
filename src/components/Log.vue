@@ -1,15 +1,9 @@
 <template>
-  <div id="flat">
-    <div id="outer">
-      <p>
-        <button id="startB">Start</button>
-      </p>
-      <p>
-        <button id="stopB">Stop</button>
-      </p>
-      <p>
-        <button id="exitB">Exit</button>
-      </p>
+  <v-container id="flat">
+    <div>
+        <button id="startB"> Start </button>
+        <button id="stopB"> Stop </button>
+        <button id="exitB"> Delete </button>
     </div>
 
     <textarea class="window" readonly>
@@ -40,7 +34,7 @@
       INFO: 127.0.0.1:49460 - "POST /config/boat HTTP/1.1" 200 OK
     </textarea>
 
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -50,19 +44,23 @@
 <style>
 
 #flat {
+
   background-color: #bceaff;
   border-radius: 15px;
   float: left;
-  width: 37%;
+  width: 550px;
   height: 500px;
-  margin: 30px 30px 80px;
+  margin: 30px 30px 30px;
+  font-family: Tahoma;
+
 }
 
 .window {
-  margin-top: 20px;
+
+  margin-top: 1%;
   width: 100%;
   border-radius: 15px;
-  height: 85%;
+  height: 88%;
   resize: none;
 
 }
@@ -83,8 +81,9 @@
 }
 
 #stopB {
-  margin-left: -15%;
+
   float: none;
+  margin-left: 23%;
   margin-top: 2%;
   background-color: lightyellow;
   padding: 6px 24px;
@@ -98,7 +97,6 @@
 }
 
 #exitB {
-
   float: right;
   margin: 2%;
   background-color: lightcoral;
@@ -110,14 +108,6 @@
 
 #exitB:hover {
   background-color: #ff3a38;
-}
-
-button {
-  display: inline-block;
-}
-
-#outer {
-  text-align: center;
 }
 
 

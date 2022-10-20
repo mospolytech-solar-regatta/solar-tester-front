@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Mainy">
     <aside
         class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block h-screen border-r border-gray-200 dark:border-gray-700">
       <div class="py-4 text-gray-500 dark:text-gray-400">
@@ -103,3 +103,9 @@ function closeSideMenu() {
   return emits('closeSideMenu')
 }
 </script>
+
+<style>
+ #Mainy{
+   font-family: Tahoma;
+ }
+</style>

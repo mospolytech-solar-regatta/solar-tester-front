@@ -1,7 +1,9 @@
 <template>
   <div class="root">
     <div class="container">
-      <h1 id="h1">Тестирование</h1>
+      <h1 id="h1">Testing</h1>
+
+
 
       <div>
         <textarea id="textarea-value" class="body-param_text" v-model="confData">
@@ -29,10 +31,13 @@
       </p>
 
     </div>
+    <v-alert closable text="OK" type="success">OK</v-alert>
   </div>
 </template>
 
 <script>
+
+
 export default {
 
   name: 'MyMain',
@@ -101,11 +106,11 @@ export default {
 <style>
 
 #h1 {
-  font-family: "HP Simplified Hans";
   text-align: center;
   color: black;
   margin-top: 0%;
   font-size: 30px;
+
 }
 
 #p1 {
@@ -115,7 +120,6 @@ export default {
   padding: 6px 24px;
   margin-bottom: 25px;
   margin-top: 5%;
-  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
 }
 
@@ -125,7 +129,6 @@ export default {
   font-size: 20px;
   padding: 6px 24px;
   margin-bottom: 25px;
-  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
 }
 
@@ -135,7 +138,6 @@ export default {
   font-size: 20px;
   padding: 6px 24px;
   margin-bottom: 25px;
-  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
 
 }
@@ -146,7 +148,6 @@ export default {
   font-size: 20px;
   padding: 6px 24px;
   margin-bottom: 15px;
-  /*font-family: "HP Simplified Hans";*/
   box-shadow: 5px 5px 5px lightgrey;
 
 }
@@ -159,6 +160,7 @@ button {
   width: auto;
   height: auto;
   margin: 5%;
+  font-family: Tahoma;
 }
 
 .body-param_text {
