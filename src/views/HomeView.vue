@@ -31,7 +31,6 @@
       </p>
 
     </div>
-    <v-alert closable text="OK" type="success">OK</v-alert>
   </div>
 </template>
 
