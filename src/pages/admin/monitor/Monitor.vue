@@ -1,0 +1,135 @@
+<template>
+  <div class="dashboard">
+    <div class="row row">
+      <va-card-content style="float: top">
+        <va-button-dropdown label="Create new logCard" class="mr-2 mb-2" style="float: top">
+          <ul id="example-1">
+            <li v-for="item in items" :key="item.message">
+              <va-button @click="showLogCard(item.message)" :value="item.message" style="display: flex">{{
+                  item.message
+                }}
+              </va-button>
+            </li>
+          </ul>
+        </va-button-dropdown>
+      </va-card-content>
+      <div v-for="(item, id) in selectedMessages" class="flex md6 lg4">
+        <LogCard :message="item" :logId="id" :removeLog="removeLog"/>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import {Ref, ref} from "vue";
+import {useToast} from "vuestic-ui";
+import LogCard from '../../../components/logCard/LogCard.vue'
+
+const value = ref();
+const {init} = useToast();
+const host = import.meta.env.VITE_BACKEND_HOST;
+const items = [
+  {message: 'serial_config'},
+  {message: 'telemetry'},
+  {message: 'serial_config_apply'},
+  {message: 'connector_logs'},
+]
+const selectedMessages: Ref<string[]> = ref([]);
+
+function removeLog(id: number) {
+  selectedMessages.value.splice(id, 1);
+}
+
+function showLogCard(message: string) {
+  selectedMessages.value.push(message);
+}
+
+async function start() {
+  console.log(host);
+  let resp = await fetch(host + "/run/boat")
+    .catch(error => dangerToast(error.toString()));
+  if (resp?.ok) {
+    let body = await resp.json();
+    successToast(body.toString());
+  }
+}
+
+async function stop() {
+
+  let resp = await fetch(host + "/stop/boat")
+    .catch(error => dangerToast(error.toString()));
+  if (resp?.ok) {
+    let body = await resp.json();
+    successToast(body.toString());
+  }
+}
+
+async function getConfig() {
+
+  let resp = await fetch(host + "/config/boat")
+    .catch(error => dangerToast(error.toString()));
+  if (resp?.ok) {
+    let body = await resp.json();
+    successToast("config acquired");
+    value.value = body;
+  }
+}
+
+async function setConfig() {
+
+  let resp = await fetch(host + "/config/boat", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body:
+      JSON.stringify(value.value)
+  })
+    .catch(error => dangerToast(error.toString()));
+
+  if (resp?.ok) {
+    successToast("config updated");
+  }
+}
+
+function dangerToast(msg: string) {
+  init({
+    message: msg,
+    color: "danger",
+    position: "bottom-right"
+  });
+}
+
+function successToast(msg: string) {
+  init({
+    message: msg,
+    color: "success",
+    position: "bottom-right"
+  });
+}
+
+</script>
+
+<style lang="scss">
+.jse-json-node {
+  font-size: 19px;
+  margin-top: 4px;
+}
+
+.row-equal .flex {
+  .va-card {
+    height: 100%;
+  }
+}
+
+.dashboard {
+  .va-card {
+    margin-bottom: 0 !important;
+
+    &__title {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+</style>
