@@ -1,24 +1,24 @@
 <template>
-  <div class="flex h-screen bg-gray-50 dark:bg-gray-900" id="app">
-    <Sidebar :isSideMenuOpen="isSideMenuOpen" @close-side-menu="isSideMenuOpen = false"/>
-
-    <div class="flex flex-col flex-1 w-full">
-      <Navigation @open-side-menu="isSideMenuOpen = !isSideMenuOpen"/>
-      <div class="p-6 dark:text-white">
-        <RouterView/>
-      </div>
-    </div>
-  </div>
+  <router-view />
 </template>
 
 <script setup lang="ts">
-
-import {ref} from "vue";
-import "@/assets/main.min.css"
-
-import {RouterView} from 'vue-router'
-import Sidebar from './components/Sidebar.vue'
-
-
-const isSideMenuOpen = ref(false);
+  import { useTheme } from './services/vuestic-ui/themes'
+  useTheme()
 </script>
+
+<style lang="scss">
+  @import 'scss/main.scss';
+
+  #app {
+    font-family: 'Source Sans Pro', Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+  }
+
+  body {
+    margin: 0;
+    background: var(--va-background);
+  }
+</style>
