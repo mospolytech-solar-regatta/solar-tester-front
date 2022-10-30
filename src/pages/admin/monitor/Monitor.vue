@@ -27,7 +27,7 @@ import LogCard from '../../../components/logCard/LogCard.vue'
 
 const value = ref();
 const {init} = useToast();
-const host = import.meta.env.VITE_BACKEND_HOST;
+const host = " http://localhost:3000";
 const items = [
   {message: 'serial_config'},
   {message: 'telemetry'},

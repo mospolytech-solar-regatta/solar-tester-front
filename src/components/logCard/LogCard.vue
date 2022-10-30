@@ -32,7 +32,6 @@ const props = defineProps(["message", 'removeLog', 'logId']);
 onMounted(() => {
   for (let i = 0; i < 50; i++) {
     logs.value.push(i.toString());
-
   }
 });
 </script>
