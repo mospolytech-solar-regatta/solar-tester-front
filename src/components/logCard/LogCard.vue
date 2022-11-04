@@ -13,27 +13,37 @@
     </va-card-content>
     <va-card-actions align="center">
       <va-button-group class="mb-4" size="medium">
-        <va-button>Start</va-button>
+        <va-button @click="startLog()">Start</va-button>
         <va-button @click="removeLog(logId)">Remove</va-button>
-        <va-button>Stop</va-button>
+        <va-button @click="stopLog(message)">Stop</va-button>
       </va-button-group>
     </va-card-actions>
   </va-card>
 </template>
 
 <script setup lang="ts">
-import { ref } from "@vue/reactivity";
-import { onMounted } from "vue";
+import {ref} from "@vue/reactivity";
+import {onMounted} from "vue";
 
 const isLoading = ref(true);
-const logs = ref(["haha"]);
+const logs = ref();
 const props = defineProps(["message", 'removeLog', 'logId']);
 
-onMounted(() => {
-  for (let i = 0; i < 50; i++) {
-    logs.value.push(i.toString());
-  }
-});
+// onMounted(() => {
+//   for (let i = 0; i < 50; i++) {
+//     logs.value.push(i.toString());
+//   }
+// });
+
+function startLog(){
+  let it = props.message;
+
+}
+
+function stopLog(){
+
+}
+
 </script>
 
 <style scoped>
