@@ -13,9 +13,9 @@
     </va-card-content>
     <va-card-actions align="center">
       <va-button-group class="mb-4" size="medium">
-        <va-button @click="startLog()">Start</va-button>
+        <va-button @click="startLog">Start</va-button>
         <va-button @click="removeLog(logId)">Remove</va-button>
-        <va-button @click="stopLog(message)">Stop</va-button>
+        <va-button @click="stopLog">Stop</va-button>
       </va-button-group>
     </va-card-actions>
   </va-card>
@@ -26,7 +26,8 @@ import {ref} from "@vue/reactivity";
 import {onMounted} from "vue";
 
 const isLoading = ref(true);
-const logs = ref();
+const logs = ref(Array<string>());
+const ws = ref();
 const props = defineProps(["message", 'removeLog', 'logId']);
 
 // onMounted(() => {
@@ -36,12 +37,31 @@ const props = defineProps(["message", 'removeLog', 'logId']);
 // });
 
 function startLog(){
-  let it = props.message;
+  var endpoint = "ws://" + import.meta.env.VITE_BACKEND_HOST + "/listen/" + props.message;
+  ws.value = new WebSocket(endpoint);
+  ws.value.onmessage = onMessage;
+}
 
+function onMessage(event: any) {
+  let content = document.createTextNode(event.data)
+  console.log(event.data);
+  if (event.data instanceof Blob) {
+    let reader = new FileReader();
+
+    reader.onload = () => {
+      console.log("Result: " + reader.result);
+      let res: string = <string>reader.result;
+      logs.value.push(res);
+    };
+
+    reader.readAsText(event.data);
+  } else {
+    logs.value.push(event.data);
+  }
 }
 
 function stopLog(){
-
+  ws.value.close();
 }
 
 </script>
