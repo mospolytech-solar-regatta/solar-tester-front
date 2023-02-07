@@ -3,8 +3,8 @@
   "private": true,
   "version": "3.1.0",
   "scripts": {
-    "prepare": "husky install",
-    "dev": "vite",
+    "prepare": "cd .. && husky install front/.husky",
+    "dev": "vite build --watch",
     "build": "npm run lint && vue-tsc --noEmit && vite build",
     "build:ci": "vite build",
     "prelint": "npm run format",
@@ -25,7 +25,6 @@
     "@gtm-support/vue-gtm": "^1.6.0",
     "axios": "^0.27.2",
     "chart.js": "^3.8.0",
-    "esbuild-windows-64": "^0.15.12",
     "flag-icons": "^6.6.4",
     "ionicons": "^4.6.3",
     "json-editor-vue": "^0.8.0",
@@ -66,5 +65,8 @@
     "vite": "^2.9.9",
     "vue-eslint-parser": "^8.3.0",
     "vue-tsc": "^0.35.0"
+  },
+  "optionalDependencies": {
+    "esbuild-windows-64": "^0.15.12"
   }
 }

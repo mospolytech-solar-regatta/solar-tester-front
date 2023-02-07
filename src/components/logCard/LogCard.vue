@@ -23,7 +23,6 @@
 
 <script setup lang="ts">
 import {ref} from "@vue/reactivity";
-import {onMounted} from "vue";
 
 const isLoading = ref(true);
 const logs = ref(Array<string>());
@@ -36,8 +35,12 @@ const props = defineProps(["message", 'removeLog', 'logId']);
 //   }
 // });
 
-function startLog(){
-  var endpoint = "ws://" + import.meta.env.VITE_BACKEND_HOST + "/listen/" + props.message;
+function startLog() {
+  let host = import.meta.env.VITE_BACKEND_HOST
+  if (host == "") {
+    host = location.host
+  }
+  var endpoint = "ws://" + host + "/listen/" + props.message;
   ws.value = new WebSocket(endpoint);
   ws.value.onmessage = onMessage;
 }
@@ -60,7 +63,7 @@ function onMessage(event: any) {
   }
 }
 
-function stopLog(){
+function stopLog() {
   ws.value.close();
 }
 

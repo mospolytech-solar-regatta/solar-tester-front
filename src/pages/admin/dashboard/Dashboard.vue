@@ -26,7 +26,7 @@ import { useToast } from "vuestic-ui";
 
 const value = ref();
 const { init } = useToast();
-const host = "http://" + import.meta.env.VITE_BACKEND_HOST;
+const host = (import.meta.env.VITE_BACKEND_HOST != "") ? "http://" + import.meta.env.VITE_BACKEND_HOST: "";
 
 async function start() {
   console.log(host);

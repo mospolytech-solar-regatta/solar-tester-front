@@ -2,7 +2,7 @@
   <div class="dashboard">
     <div class="row row">
 
-      <va-app-bar style="border-radius: 50px; height: 40px; color: ">
+      <va-app-bar style="border-radius: 50px; height: 40px">
         <va-button-dropdown label="Create new logCard" class="mr-2 mb-2" style="margin-top: 5px">
           <ul id="example-1">
             <li v-for="item in items" :key="item.message" style="padding-top: 10px">
@@ -30,7 +30,6 @@ import LogCard from '../../../components/logCard/LogCard.vue'
 
 const value = ref();
 const {init} = useToast();
-const host = " http://localhost:3000";
 
 const items = [
   {message: 'serial_config'},
@@ -47,54 +46,6 @@ function removeLog(id: number) {
 
 function showLogCard(message: string) {
   selectedMessages.value.push(message);
-}
-
-async function start() {
-  console.log(host);
-  let resp = await fetch(host + "/run/boat")
-    .catch(error => dangerToast(error.toString()));
-  if (resp?.ok) {
-    let body = await resp.json();
-    successToast(body.toString());
-  }
-}
-
-async function stop() {
-
-  let resp = await fetch(host + "/stop/boat")
-    .catch(error => dangerToast(error.toString()));
-  if (resp?.ok) {
-    let body = await resp.json();
-    successToast(body.toString());
-  }
-}
-
-async function getConfig() {
-
-  let resp = await fetch(host + "/config/boat")
-    .catch(error => dangerToast(error.toString()));
-  if (resp?.ok) {
-    let body = await resp.json();
-    successToast("config acquired");
-    value.value = body;
-  }
-}
-
-async function setConfig() {
-
-  let resp = await fetch(host + "/config/boat", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json"
-    },
-    body:
-      JSON.stringify(value.value)
-  })
-    .catch(error => dangerToast(error.toString()));
-
-  if (resp?.ok) {
-    successToast("config updated");
-  }
 }
 
 function dangerToast(msg: string) {
